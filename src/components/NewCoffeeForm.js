@@ -23,4 +23,27 @@ function NewCoffeeForm(props) {
         placeholder='Coffee Name'
         value={name}
         onChange={(e) => setName(e.target.value)} />
+      <input
+        type='text'
+        name='origin'
+        placeholder='Origin'
+        value={origin}
+        onChange={(e) => setOrigin(e.target.value)} />
+      <input
+        type='text'
+        name='price'
+        placeholder='Price'
+        value={price}
+        onChange={(e) => setPrice(e.target.value)} />
+      <input
+        type='text'
+        name='roast'
+        placeholder='Roast'
+        value={roast}
+        onChange={(e) => setRoast(e.target.value)} />
+      <button type='submit'>Add Coffee</button>
+    </form>
+  );
 }
+
+export default NewCoffeeForm;
