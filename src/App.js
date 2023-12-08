@@ -27,8 +27,15 @@ function App() {
     setMainCoffeeList(updatedMainCoffeeList);
   };
 
+  let currentlyVisibleState = null;
+
+  if (selectedCoffee != null) {
+    currentlyVisibleState = <CoffeeDetail
+      coffee={selectedCoffee}
+      onClickingDecrement={handleDecrementingCoffee} />;
   
+      
 
-}
+  }
 
-export default App;
+  export default App;
