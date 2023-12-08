@@ -15,5 +15,12 @@ function NewCoffeeForm(props) {
     setRoast('');
   }
 
-  
+  return (
+    <form onSubmit={handleNewCoffeeFormSubmission}>
+      <input
+        type='text'
+        name='name'
+        placeholder='Coffee Name'
+        value={name}
+        onChange={(e) => setName(e.target.value)} />
 }
