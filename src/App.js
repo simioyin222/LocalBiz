@@ -17,6 +17,16 @@ function App() {
     setSelectedCoffee(selection);
   };
 
+  const handleDecrementingCoffee = (id) => {
+    const updatedMainCoffeeList = mainCoffeeList.map(coffee => {
+      if (coffee.id === id && coffee.pounds > 0) {
+        return { ...coffee, pounds: coffee.pounds - 1 };
+      }
+      return coffee;
+    });
+    setMainCoffeeList(updatedMainCoffeeList);
+  };
+
   
 
 }
