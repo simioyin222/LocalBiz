@@ -34,7 +34,18 @@ function App() {
       coffee={selectedCoffee}
       onClickingDecrement={handleDecrementingCoffee} />;
   
-      
+    } else {
+      currentlyVisibleState = (
+        <React.Fragment>
+          <CoffeeList 
+            coffeeList={mainCoffeeList} 
+            onCoffeeSelection={handleChangingSelectedCoffee} />
+          <NewCoffeeForm onNewCoffeeCreation={handleAddingNewCoffeeToList} />
+        </React.Fragment>
+      );
+    }
+    
+    
 
   }
 
