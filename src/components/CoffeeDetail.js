@@ -15,3 +15,9 @@ function CoffeeDetail(props) {
   );
 }
 
+CoffeeDetail.propTypes = {
+  coffee: PropTypes.object,
+  onClickingDecrement: PropTypes.func
+};
+
+export default CoffeeDetail;
