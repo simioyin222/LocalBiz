@@ -1,58 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { addCoffee, selectCoffee, decrementCoffeePounds } from './redux/actions';
 import Header from './components/Header';
 import CoffeeList from './components/CoffeeList';
 import NewCoffeeForm from './components/NewCoffeeForm';
 import CoffeeDetail from './components/CoffeeDetail';
 
-function App() {
-  const initialCoffeeList = [
-    { id: 1, name: 'Arabica', origin: 'Ethiopia', price: '15', roast: 'Medium', pounds: 130 },
-    { id: 2, name: 'Robusta', origin: 'Vietnam', price: '12', roast: 'Dark', pounds: 150 },
-  ];
-
-  const [mainCoffeeList, setMainCoffeeList] = useState(initialCoffeeList);
-  const [selectedCoffee, setSelectedCoffee] = useState(null);
-
+function App(props) {
   const handleAddingNewCoffeeToList = (newCoffee) => {
-    newCoffee.id = mainCoffeeList.length + 1;
-    newCoffee.pounds = 130;
-    setMainCoffeeList([...mainCoffeeList, newCoffee]);
+    props.addCoffee(newCoffee);
   };
 
   const handleChangingSelectedCoffee = (id) => {
-    const selection = mainCoffeeList.find(coffee => coffee.id === id);
-    setSelectedCoffee(selection);
+    props.selectCoffee(id);
   };
 
   const handleDecrementingCoffee = (id) => {
-    const updatedMainCoffeeList = mainCoffeeList.map(coffee => {
-      if (coffee.id === id && coffee.pounds > 0) {
-        return { ...coffee, pounds: coffee.pounds - 1 };
-      }
-      return coffee;
-    });
-    setMainCoffeeList(updatedMainCoffeeList);
-    setSelectedCoffee(updatedMainCoffeeList.find(coffee => coffee.id === id));
-  };
-
-  const handleViewList = () => {
-    setSelectedCoffee(null);
+    props.decrementCoffeePounds(id);
   };
 
   let currentlyVisibleState = null;
 
-  if (selectedCoffee != null) {
+  if (props.selectedCoffee != null) {
     currentlyVisibleState = (
       <CoffeeDetail
-        coffee={selectedCoffee}
+        coffee={props.selectedCoffee}
         onClickingDecrement={handleDecrementingCoffee}
-        onViewList={handleViewList} />
+        onViewList={() => props.selectCoffee(null)} />
     );
   } else {
     currentlyVisibleState = (
       <React.Fragment>
         <CoffeeList 
-          coffeeList={mainCoffeeList} 
+          coffeeList={props.mainCoffeeList} 
           onCoffeeSelection={handleChangingSelectedCoffee} />
         <NewCoffeeForm onNewCoffeeCreation={handleAddingNewCoffeeToList} />
       </React.Fragment>
@@ -67,4 +47,15 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  mainCoffeeList: state.coffee.coffeeList,
+  selectedCoffee: state.coffee.selectedCoffee
+});
+
+const mapDispatchToProps = {
+  addCoffee,
+  selectCoffee,
+  decrementCoffeePounds
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
