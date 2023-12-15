@@ -5,10 +5,16 @@ import NewCoffeeForm from './components/NewCoffeeForm';
 import CoffeeDetail from './components/CoffeeDetail';
 
 function App() {
-  const [mainCoffeeList, setMainCoffeeList] = useState([]);
+  const initialCoffeeList = [
+    { id: 1, name: 'Arabica', origin: 'Ethiopia', price: '15', roast: 'Medium', pounds: 130 },
+    { id: 2, name: 'Robusta', origin: 'Vietnam', price: '12', roast: 'Dark', pounds: 150 },
+  ];
+
+  const [mainCoffeeList, setMainCoffeeList] = useState(initialCoffeeList);
   const [selectedCoffee, setSelectedCoffee] = useState(null);
 
   const handleAddingNewCoffeeToList = (newCoffee) => {
+    newCoffee.id = mainCoffeeList.length + 1;
     newCoffee.pounds = 130;
     setMainCoffeeList([...mainCoffeeList, newCoffee]);
   };
