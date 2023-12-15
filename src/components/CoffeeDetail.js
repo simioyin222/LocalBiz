@@ -10,7 +10,7 @@ function CoffeeDetail(props) {
       <p>Price: {props.coffee.price} per lb</p>
       <p>Pounds Remaining: {props.coffee.pounds}</p>
       <button onClick={() => props.onClickingDecrement(props.coffee.id)}>Sell 1 lb</button>
-      <button onClick={props.onBackToList}>Back to List</button>
+      <button onClick={props.onViewList}>View Coffee List</button>
       <hr />
     </React.Fragment>
   );
@@ -19,7 +19,7 @@ function CoffeeDetail(props) {
 CoffeeDetail.propTypes = {
   coffee: PropTypes.object,
   onClickingDecrement: PropTypes.func,
-  onBackToList: PropTypes.func
+  onViewList: PropTypes.func
 };
 
 export default CoffeeDetail;
