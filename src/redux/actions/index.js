@@ -7,3 +7,8 @@ export const selectCoffee = (coffeeId) => ({
   type: 'SELECT_COFFEE',
   payload: coffeeId
 });
+
+export const decrementCoffeePounds = (coffeeId) => ({
+  type: 'DECREMENT_POUNDS',
+  payload: coffeeId
+});
