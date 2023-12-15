@@ -1,4 +1,4 @@
-# Coffee Shop Inventory Tracker
+# Local Biz For Coffee Shop Inventory Tracker
 
 ## Project Overview
 This application is a Coffee Shop Inventory Tracker built using React. It helps track the inventory of different types of coffee beans. Users can view a list of available coffee beans, add new types to the inventory, and manage the quantities as they are sold or given away.
