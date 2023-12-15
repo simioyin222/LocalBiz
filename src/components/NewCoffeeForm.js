@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function NewCoffeeForm(props) {
   const [name, setName] = useState('');
@@ -45,5 +46,9 @@ function NewCoffeeForm(props) {
     </form>
   );
 }
+
+NewCoffeeForm.propTypes = {
+  onNewCoffeeCreation: PropTypes.func.isRequired
+};
 
 export default NewCoffeeForm;
