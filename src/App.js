@@ -26,32 +26,39 @@ function App() {
       return coffee;
     });
     setMainCoffeeList(updatedMainCoffeeList);
+    setSelectedCoffee(updatedMainCoffeeList.find(coffee => coffee.id === id));
+  };
+
+  const handleViewList = () => {
+    setSelectedCoffee(null);
   };
 
   let currentlyVisibleState = null;
 
   if (selectedCoffee != null) {
-    currentlyVisibleState = <CoffeeDetail
-      coffee={selectedCoffee}
-      onClickingDecrement={handleDecrementingCoffee} />;
-  
-    } else {
-      currentlyVisibleState = (
-        <React.Fragment>
-          <CoffeeList 
-            coffeeList={mainCoffeeList} 
-            onCoffeeSelection={handleChangingSelectedCoffee} />
-          <NewCoffeeForm onNewCoffeeCreation={handleAddingNewCoffeeToList} />
-        </React.Fragment>
-      );
-    }
-    
-    return (
-      <div>
-        <Header />
-        {currentlyVisibleState}
-      </div>
+    currentlyVisibleState = (
+      <CoffeeDetail
+        coffee={selectedCoffee}
+        onClickingDecrement={handleDecrementingCoffee}
+        onViewList={handleViewList} />
+    );
+  } else {
+    currentlyVisibleState = (
+      <React.Fragment>
+        <CoffeeList 
+          coffeeList={mainCoffeeList} 
+          onCoffeeSelection={handleChangingSelectedCoffee} />
+        <NewCoffeeForm onNewCoffeeCreation={handleAddingNewCoffeeToList} />
+      </React.Fragment>
     );
   }
 
-  export default App;
+  return (
+    <div>
+      <Header />
+      {currentlyVisibleState}
+    </div>
+  );
+}
+
+export default App;
