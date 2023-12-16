@@ -1,6 +1,9 @@
 import coffeeReducer from '../reducers/coffeeReducer';
 import * as actions from '../actions';
 
+import coffeeReducer from '../reducers/coffeeReducer';
+import * as actions from '../actions';
+
 describe('coffeeReducer', () => {
   test('Should return default state if no action type is recognized', () => {
     expect(coffeeReducer(undefined, { type: null })).toEqual({
@@ -17,16 +20,19 @@ describe('coffeeReducer', () => {
     const action = actions.addCoffee(newCoffee);
     const newState = coffeeReducer(undefined, action);
     expect(newState.coffeeList).toContainEqual(newCoffee);
+  });
 
-    test('Should correctly select a coffee', () => {
-      const action = actions.selectCoffee(1);
-      const newState = coffeeReducer(undefined, action);
-      expect(newState.selectedCoffee).toEqual({
-        id: 1, name: 'Arabica', origin: 'Ethiopia', price: '15', roast: 'Medium', pounds: 130
-      });
+  test('Should correctly select a coffee', () => {
+    const action = actions.selectCoffee(1);
+    const newState = coffeeReducer(undefined, action);
+    expect(newState.selectedCoffee).toEqual({
+      id: 1, name: 'Arabica', origin: 'Ethiopia', price: '15', roast: 'Medium', pounds: 130
     });
+  });
 
-    
+  test('Should decrement pounds of the selected coffee', () => {
+    const action = actions.decrementCoffeePounds(1);
+    const newState = coffeeReducer(undefined, action);
+    expect(newState.coffeeList.find(coffee => coffee.id === 1).pounds).toBe(129);
   });
 });
-
