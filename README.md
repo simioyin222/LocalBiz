@@ -1,23 +1,38 @@
-# Local Biz For Coffee Shop Inventory Tracker
+# Local Biz: Coffee Shop Inventory Tracker
 
 ## Project Overview
-This application is a Coffee Shop Inventory Tracker built using React. It helps track the inventory of different types of coffee beans. Users can view a list of available coffee beans, add new types to the inventory, and manage the quantities as they are sold or given away.
+
+This application is a Coffee Shop Inventory Tracker built using React and Redux. It helps track the inventory of different types of coffee beans. Users can view a list of available coffee beans, add new types to the inventory, manage the quantities as they are sold or given away, and track the inventory using Redux state management.
 
 ## Installation and Setup
+
 To run this project locally:
+
 1. Clone the repository: `git clone [Your-Repository-URL]`
 2. Navigate to the project directory: `cd coffee-inventory-tracker`
 3. Install dependencies: `npm install`
 4. Start the application: `npm start`
-5. Open `http://localhost:3000` to view it in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Usage
-- **View Coffee List:** The home page displays a list of all available coffee beans with details like name, origin, price, and roast.
-- **Add New Coffee:** Fill out the form to add a new type of coffee bean to the inventory.
-- **Manage Inventory:** Click on a coffee bean item to view details and decrement the inventory as sales are made.
+
+- **View Coffee List**: The home page displays a list of all available coffee beans with details like name, origin, price, and roast.
+- **Add New Coffee**: Fill out the form to add a new type of coffee bean to the inventory.
+- **Manage Inventory**: Click on a coffee bean item to view details and decrement the inventory as sales are made.
+
+## Redux Integration
+
+The application state is managed using Redux, providing a predictable state container for JavaScript apps. The Redux store is set up to handle actions and reducers for managing coffee inventory.
+
+## Jest Testing
+
+Reducers in the project are tested using Jest, ensuring that all state transitions are handled as expected.
 
 ## Technology Stack
+
 - React
+- Redux
+- Jest
 - CSS
 - JavaScript
 
