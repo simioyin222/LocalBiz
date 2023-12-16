@@ -17,5 +17,16 @@ describe('coffeeReducer', () => {
     const action = actions.addCoffee(newCoffee);
     const newState = coffeeReducer(undefined, action);
     expect(newState.coffeeList).toContainEqual(newCoffee);
+
+    test('Should correctly select a coffee', () => {
+      const action = actions.selectCoffee(1);
+      const newState = coffeeReducer(undefined, action);
+      expect(newState.selectedCoffee).toEqual({
+        id: 1, name: 'Arabica', origin: 'Ethiopia', price: '15', roast: 'Medium', pounds: 130
+      });
+    });
+
+    
   });
 });
+

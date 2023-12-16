@@ -8,7 +8,8 @@ const initialState = {
 
 export default function coffeeReducer(state = initialState, action) {
   switch (action.type) {
-    //  Use this later to define more cases for different actions here (note to self)
+    case 'ADD_COFFEE':
+      return { ...state, coffeeList: [...state.coffeeList, action.payload] };
     default:
       return state;
   }
