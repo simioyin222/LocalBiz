@@ -3,8 +3,6 @@ import CoffeeItem from './CoffeeItem';
 import PropTypes from 'prop-types';
 
 function CoffeeList(props) {
-  console.log("Coffee keys:", props.coffeeList.map(coffee => coffee.id)); // Debugging here 
-
   return (
     <div>
       {props.coffeeList.map((coffee) => 
