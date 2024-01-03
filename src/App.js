@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addCoffee, updateCoffee, selectCoffee, decrementCoffeePounds } from './redux/actions';
 import Header from './components/Header';
@@ -9,6 +9,11 @@ import CoffeeDetail from './components/CoffeeDetail';
 function App(props) {
   const [isEditing, setIsEditing] = useState(false);
   const [editingCoffee, setEditingCoffee] = useState(null);
+  const [selectedCoffeeDetail, setSelectedCoffeeDetail] = useState(null);
+
+  useEffect(() => {
+    setSelectedCoffeeDetail(props.selectedCoffee);
+  }, [props.selectedCoffee]);
 
   const handleAddingNewCoffeeToList = (newCoffee) => {
     props.addCoffee(newCoffee);
@@ -35,11 +40,10 @@ function App(props) {
   };
 
   let currentlyVisibleState = null;
-  if (props.selectedCoffee != null) {
+  if (selectedCoffeeDetail != null) {
     currentlyVisibleState = (
       <CoffeeDetail
-        key={props.selectedCoffee.id + '-' + props.selectedCoffee.pounds}
-        coffee={props.selectedCoffee}
+        coffee={selectedCoffeeDetail}
         onClickingDecrement={handleDecrementingCoffee}
         onViewList={() => props.selectCoffee(null)}
       />
