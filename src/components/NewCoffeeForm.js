@@ -18,7 +18,6 @@ function NewCoffeeForm(props) {
     }
   }, [props.coffee]);
 
-
   function handleSubmit(event) {
     event.preventDefault();
     const coffeeData = { name, origin, price, roast, pounds };
@@ -39,7 +38,7 @@ function NewCoffeeForm(props) {
   return (
     <form onSubmit={handleSubmit}>
       <h2>{props.isEditing ? 'Edit Coffee' : 'Add New Coffee'}</h2>
-      {}
+      {/*form fields*/}
       <button type='submit'>{props.isEditing ? 'Update' : 'Add'}</button>
     </form>
   );
