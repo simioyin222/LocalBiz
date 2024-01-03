@@ -9,7 +9,9 @@ function CoffeeList(props) {
         <CoffeeItem 
           key={coffee.id}
           coffee={coffee}
-          whenCoffeeClicked={props.onCoffeeSelection} />
+          whenCoffeeClicked={props.onCoffeeSelection}
+          onEditClick={props.onEditClick}
+        />
       )}
     </div>
   );
@@ -17,7 +19,8 @@ function CoffeeList(props) {
 
 CoffeeList.propTypes = {
   coffeeList: PropTypes.array.isRequired,
-  onCoffeeSelection: PropTypes.func.isRequired
+  onCoffeeSelection: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func
 };
 
 export default CoffeeList;
