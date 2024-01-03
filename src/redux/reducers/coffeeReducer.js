@@ -15,14 +15,16 @@ export default function coffeeReducer(state = initialState, action) {
       const selected = state.coffeeList.find(coffee => coffee.id === action.payload);
       return { ...state, selectedCoffee: selected };
 
-    case 'DECREMENT_POUNDS':
-      const updatedList = state.coffeeList.map(coffee => {
-        if (coffee.id === action.payload && coffee.pounds > 0) {
-          return { ...coffee, pounds: coffee.pounds - 1 };
-        }
-        return coffee;
-      });
-      return { ...state, coffeeList: updatedList };
+      case 'DECREMENT_POUNDS':
+  return {
+    ...state,
+    coffeeList: state.coffeeList.map(coffee => {
+      if (coffee.id === action.payload) {
+        return { ...coffee, pounds: Math.max(0, coffee.pounds - 1) }; // Prevent negative pounds
+      }
+      return coffee;
+    })
+  };
 
     case 'UPDATE_COFFEE':
       const updatedCoffeeList = state.coffeeList.map(coffee => {

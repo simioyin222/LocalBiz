@@ -30,8 +30,8 @@ function App(props) {
     props.selectCoffee(id);
   };
 
-  const handleDecrementingCoffee = (id) => {
-    props.decrementCoffeePounds(id);
+  const handleDecrementingCoffee = (coffeeId) => {
+    props.decrementCoffeePounds(coffeeId);
   };
 
   let currentlyVisibleState = null;
