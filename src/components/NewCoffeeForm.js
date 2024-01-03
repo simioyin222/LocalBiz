@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function NewCoffeeForm(props) {
@@ -6,15 +6,18 @@ function NewCoffeeForm(props) {
   const [origin, setOrigin] = useState('');
   const [price, setPrice] = useState('');
   const [roast, setRoast] = useState('');
+  const [pounds, setPounds] = useState('');
 
-  function handleNewCoffeeFormSubmission(event) {
-    event.preventDefault();
-    props.onNewCoffeeCreation({ name, origin, price, roast });
-    setName('');
-    setOrigin('');
-    setPrice('');
-    setRoast('');
-  }
+  useEffect(() => {
+    if (props.coffee) {
+      setName(props.coffee.name);
+      setOrigin(props.coffee.origin);
+      setPrice(props.coffee.price);
+      setRoast(props.coffee.roast);
+      setPounds(props.coffee.pounds);
+    }
+  }, [props.coffee]);
+
 
   return (
     <form onSubmit={handleNewCoffeeFormSubmission}>
