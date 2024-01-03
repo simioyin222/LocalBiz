@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addCoffee, selectCoffee, decrementCoffeePounds } from './redux/actions';
+import { addCoffee, updateCoffee, selectCoffee, decrementCoffeePounds } from './redux/actions';
 import Header from './components/Header';
 import CoffeeList from './components/CoffeeList';
 import NewCoffeeForm from './components/NewCoffeeForm';
 import CoffeeDetail from './components/CoffeeDetail';
 
 function App(props) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingCoffee, setEditingCoffee] = useState(null);
+
   const handleAddingNewCoffeeToList = (newCoffee) => {
     props.addCoffee(newCoffee);
+  };
+
+  const handleUpdatingCoffee = (updatedCoffee) => {
+    props.updateCoffee(updatedCoffee);
+    setIsEditing(false);
+    setEditingCoffee(null);
+  };
+
+  const handleEditClick = (coffeeId) => {
+    const coffeeToEdit = props.mainCoffeeList.find(coffee => coffee.id === coffeeId);
+    setEditingCoffee(coffeeToEdit);
+    setIsEditing(true);
   };
 
   const handleChangingSelectedCoffee = (id) => {
@@ -20,7 +35,6 @@ function App(props) {
   };
 
   let currentlyVisibleState = null;
-
   if (props.selectedCoffee != null) {
     currentlyVisibleState = (
       <CoffeeDetail
@@ -28,13 +42,25 @@ function App(props) {
         onClickingDecrement={handleDecrementingCoffee}
         onViewList={() => props.selectCoffee(null)} />
     );
+  } else if (isEditing) {
+    currentlyVisibleState = (
+      <NewCoffeeForm
+        isEditing={true}
+        coffee={editingCoffee}
+        onUpdateCoffee={handleUpdatingCoffee}
+      />
+    );
   } else {
     currentlyVisibleState = (
       <React.Fragment>
         <CoffeeList 
-          coffeeList={props.mainCoffeeList} 
-          onCoffeeSelection={handleChangingSelectedCoffee} />
-        <NewCoffeeForm onNewCoffeeCreation={handleAddingNewCoffeeToList} />
+          coffeeList={props.mainCoffeeList}
+          onCoffeeSelection={handleChangingSelectedCoffee}
+          onEditClick={handleEditClick}
+        />
+        <NewCoffeeForm
+          onNewCoffeeCreation={handleAddingNewCoffeeToList}
+        />
       </React.Fragment>
     );
   }
@@ -54,6 +80,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addCoffee,
+  updateCoffee,
   selectCoffee,
   decrementCoffeePounds
 };
