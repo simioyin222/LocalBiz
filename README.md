@@ -20,6 +20,10 @@ To run this project locally:
 - **Add New Coffee**: Fill out the form to add a new type of coffee bean to the inventory.
 - **Manage Inventory**: Click on a coffee bean item to view details and decrement the inventory as sales are made.
 
+## Bugs?
+ 
+-Currently no bugs at the moment, I will mention the decrement/subtraction of 1lb coffee from pounds remaining is only visble after performing action then re-entering/clicking view details again to see updated # amount  
+
 ## Redux Integration
 
 The application state is managed using Redux, providing a predictable state container for JavaScript apps. The Redux store is set up to handle actions and reducers for managing coffee inventory.
