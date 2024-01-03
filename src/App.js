@@ -43,6 +43,7 @@ function App(props) {
   if (selectedCoffeeDetail != null) {
     currentlyVisibleState = (
       <CoffeeDetail
+        key={selectedCoffeeDetail.id + '-' + selectedCoffeeDetail.pounds}
         coffee={selectedCoffeeDetail}
         onClickingDecrement={handleDecrementingCoffee}
         onViewList={() => props.selectCoffee(null)}
