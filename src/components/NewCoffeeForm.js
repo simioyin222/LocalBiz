@@ -46,7 +46,10 @@ function NewCoffeeForm(props) {
 }
 
 NewCoffeeForm.propTypes = {
-  onNewCoffeeCreation: PropTypes.func.isRequired
+  isEditing: PropTypes.bool,
+  coffee: PropTypes.object,
+  onNewCoffeeCreation: PropTypes.func,
+  onUpdateCoffee: PropTypes.func
 };
 
 export default NewCoffeeForm;
