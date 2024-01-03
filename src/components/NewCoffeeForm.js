@@ -20,14 +20,7 @@ function NewCoffeeForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const coffeeData = { 
-      name, 
-      origin, 
-      price, 
-      roast, 
-      pounds: Number(pounds)
-    };
-
+    const coffeeData = { name, origin, price, roast, pounds: Number(pounds) };
     if (props.isEditing) {
       props.onUpdateCoffee({ ...props.coffee, ...coffeeData });
     } else {

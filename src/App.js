@@ -30,17 +30,19 @@ function App(props) {
     props.selectCoffee(id);
   };
 
-  const handleDecrementingCoffee = (coffeeId) => {
-    props.decrementCoffeePounds(coffeeId);
+  const handleDecrementingCoffee = (id) => {
+    props.decrementCoffeePounds(id);
   };
 
   let currentlyVisibleState = null;
   if (props.selectedCoffee != null) {
     currentlyVisibleState = (
       <CoffeeDetail
+        key={props.selectedCoffee.id + '-' + props.selectedCoffee.pounds}
         coffee={props.selectedCoffee}
         onClickingDecrement={handleDecrementingCoffee}
-        onViewList={() => props.selectCoffee(null)} />
+        onViewList={() => props.selectCoffee(null)}
+      />
     );
   } else if (isEditing) {
     currentlyVisibleState = (
