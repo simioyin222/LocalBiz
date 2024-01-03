@@ -14,7 +14,7 @@ export default function coffeeReducer(state = initialState, action) {
     case 'SELECT_COFFEE':
       const selected = state.coffeeList.find(coffee => coffee.id === action.payload);
       return { ...state, selectedCoffee: selected };
-      
+
     case 'DECREMENT_POUNDS':
       const updatedList = state.coffeeList.map(coffee => {
         if (coffee.id === action.payload && coffee.pounds > 0) {
@@ -23,7 +23,16 @@ export default function coffeeReducer(state = initialState, action) {
         return coffee;
       });
       return { ...state, coffeeList: updatedList };
-    
+
+    case 'UPDATE_COFFEE':
+      const updatedCoffeeList = state.coffeeList.map(coffee => {
+        if (coffee.id === action.payload.id) {
+          return action.payload;
+        }
+        return coffee;
+      });
+      return { ...state, coffeeList: updatedCoffeeList };
+
     default:
       return state;
   }

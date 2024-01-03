@@ -12,3 +12,8 @@ export const decrementCoffeePounds = (coffeeId) => ({
   type: 'DECREMENT_POUNDS',
   payload: coffeeId
 });
+
+export const updateCoffee = (coffee) => ({
+  type: 'UPDATE_COFFEE',
+  payload: coffee
+});
